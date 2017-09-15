@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>React-demo2</title>
+	</head>
+	<body>
+		<div id="app"></div>
+		
+		<script src="build/react.js"></script>
+		<script src="build/react-dom.js"></script>
+		<script src="build/browser.min.js"></script>
+		<script type="text/babel">
+			var names = ['dailiwang','galijun','wangwang','junjun','shawang']
+			
+			ReactDOM.render(
+				<div>
+					{
+						names.map((item,idx)=>{
+							return ( <div key={idx}> 你好,{item}</div> )
+						})
+					}
+				</div>,
+				document.getElementById('app'),
+				function(){
+					console.log('渲染完成啦')
+				}
+			)
+			
+		</script>
+	</body>
+</html>

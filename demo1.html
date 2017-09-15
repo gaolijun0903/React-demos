@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>React-demo1</title>
+	</head>
+	<body>
+		<div id="app"></div>
+		<script src="build/react.js"></script>
+		<script src="build/react-dom.js"></script>
+		<script src="build/browser.min.js"></script>
+		<script type="text/babel">
+			//ReactDOM.render 是 React 的最基本方法，用于将模板转为 HTML 语言，并插入指定的 DOM 节点。
+			ReactDOM.render(
+				<div>你好世界</div>,
+				document.getElementById('app'),
+				function(){
+					console.log('渲染完成')
+				}
+			)
+			
+		</script>
+	</body>
+</html>

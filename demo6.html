@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app"></div>
+		<script src="build/react.js"></script>
+		<script src="build/react-dom.js"></script>
+		<script src="build/browser.min.js"></script>
+		<!--<script type="text/babel">
+			var data = 123;
+			var MsgBox = React.createClass({
+				propTypes:{
+					title:React.PropTypes.string.isRequired
+				},
+				render(){
+					return <h1>{this.props.title}</h1>
+				}
+			})
+			ReactDOM.render(
+				<MsgBox title={data}></MsgBox>,
+				document.getElementById('app')
+			)
+		</script>-->
+		<script type="text/babel">
+			var MsgBox = React.createClass({
+				getDefaultProps:function(){
+					return {
+						title:'Hello world!'
+					}
+				},
+				render(){
+					return <h1>{this.props.title}</h1>
+				}
+			})
+			ReactDOM.render(
+				<MsgBox title='hahhahhaha'/>,
+				document.getElementById('app')
+			)
+		</script>
+	</body>
+</html>

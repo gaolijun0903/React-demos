@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>React-demo5</title>
+	</head>
+	<body>
+		<div id="app"></div>
+		<script src="build/react.js"></script>
+		<script src="build/react-dom.js"></script>
+		<script src="build/browser.min.js"></script>
+		<script type="text/babel">
+			//this.props 对象的属性与组件的属性一一对应，但是有一个例外，就是 this.props.children 属性。它表示组件的所有子节点
+			var MsgBox = React.createClass({
+				render(){
+					return (<ol>
+						{
+							React.Children.map(this.props.children,(child)=>{
+								return <li>{child}</li>
+							})
+						}
+					
+					</ol>)
+				}
+			})
+			
+			ReactDOM.render(
+				<MsgBox>
+					<span>你好啊</span>
+					<span>wangwang,旺旺</span>
+				</MsgBox>,
+				document.getElementById('app')
+			)
+		</script>
+	</body>
+</html>

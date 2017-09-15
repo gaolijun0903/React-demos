@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>React-demo7</title>
+	</head>
+	<body>
+		<div id="app"></div>
+		<script src="build/react.js"></script>
+		<script src="build/react-dom.js"></script>
+		<script src="build/browser.min.js"></script>
+		<script type="text/babel">
+			var MyComponent = React.createClass({
+				handleClick(){
+					this.refs.myinput.focus()
+				},
+				render(){
+					return (
+						<div>
+							<input type="text" ref="myinput" />
+							<input type="button" value="focus the input" onClick={this.handleClick} />
+						</div>
+					)
+				}
+			})
+			
+			ReactDOM.render(
+				<MyComponent />,
+				document.getElementById('app'),
+				()=>{
+					console.log('渲染完成啦')
+				}
+			)
+		</script>
+	</body>
+</html>
