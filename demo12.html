@@ -22,7 +22,7 @@
 		componentDidMount(){
 			this.props.promise.then(
 				value => {
-					this.setState({loading:false,dara:value})
+					this.setState({loading:false,data:value})
 				},
 				err => {
 					this.setState({loading:false,err:err})
@@ -36,9 +36,9 @@
 				return (<span>this.state.err.message</span>)
 			}else{
 				var repos = this.state.data.items;
-				repoList = repos.map((repo)=>{
+				var repoList = repos.map((repo)=>{
 					return (
-						<li>
+						<li key={repo.id}>
 							<a href={repo.html_url}>{repo.name}</a>({repo.stargazers_count} stars)<br/>
 							{repo.description}
 						</li>
