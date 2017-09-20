@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>正确的使用状态</title>
+    <script src="https://unpkg.com/react@latest/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+    //状态更新可能是异步的#
+    /*React 可以将多个setState() 调用合并成一个调用来提高性能。
+    因为 this.props 和 this.state 可能是异步更新的，你不应该依靠它们的值来计算下一个状态。
+    */
+    //wrong
+    this.setState({
+        counter: this.state.counter + this.props.increment
+    })
+    /*
+    要修复它，请使用第二种形式的 setState() 来接受一个函数而不是一个对象。 该函数将接收先前的状态作为第一个参数，将此次更新被应用时的props做为第二个参数：
+    */
+    //correct
+    this.setState((prevState,props) => {
+        return {
+            counter: prevState.counter + props.increment
+        }
+    })
+</script>
+</body>
+</html>

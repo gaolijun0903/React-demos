@@ -10,15 +10,17 @@
 <body>
 <div id="root"></div>
 <script type="text/babel">
-    class Clock extends React.component{
+    //class Clock extends React.component 注意component应该是Component
+    class Clock extends React.Component{
         constructor(props) {
             super(props);
             this.state = {date: new Date()};
         }
         componentDidMount() {
-            this.timer = setInterval(()=>{
-                this.tick()
-            },1000)
+            this.timer = setInterval(
+                () => this.tick(),
+                1000
+            );
         }
 
         componentWillUnmount() {
@@ -31,15 +33,20 @@
             return (
                 <div>
                     <h1>Hello,World</h1>
-                    <h2>It is {this.state.date.toLocaleDateString()}.</h2>
+                    <FormateDate date={this.state.date} />
                 </div>
             )
         }
     }
+
+    function FormateDate(props){
+        return <h2>It is {props.date.toLocaleTimeString()}.</h2>
+    }
+
     ReactDOM.render(
-        <Clock />,
+            <Clock />,
         document.getElementById('root')
-    )
+    );
 </script>
 </body>
 </html>
