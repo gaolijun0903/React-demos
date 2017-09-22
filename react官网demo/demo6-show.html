@@ -27,13 +27,15 @@
         handleClick(){
             this.setState((prevState)=>{
                 return {
-                    showWarning: !
+                    showWarning: !prevState.showWarning
                 }
             })
         }
         render(){
             return (
-
+                <div>
+                    <Warning warn={this.state.showWarning} />
+                </div>
             )
         }
     }
