@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组合VS继承</title>
+    <script src="https://unpkg.com/react@latest/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<div id="root"></div>
+<script type="text/babel">
+    function FancyColor(props) {
+        return (
+            <div className={'FancyBorder FancyBorder-'+props.color}>
+                {props.children}
+            </div>
+        )
+    }
+    function WelcomeDialog(props){
+        return (
+            <FancyColor color='blue'>
+                <h1 className="Dialog-title">
+                    Welcome
+                </h1>
+                <p className="Dialog-message">
+                    Thank you for visiting our spacecraft!
+                </p>
+            </FancyColor>
+        )
+    }
+    ReactDOM.render(
+        <WelcomeDialog />,
+        document.getElementById('app')
+    );
+
+
+//另一个渲染
+    function Contacts(){
+        return <div>Contacts</div>
+    }
+    function Chat(){
+        return <div>Chat</div>
+    }
+
+    function SplitPane(props){
+        return (
+            <div className="SplitPane">
+                <div className="pane-left">{props.left}</div>
+                <div className="pane-right">{props.right}</div>
+            </div>
+        )
+    }
+    function App(){
+        return (
+            <div className="wrapper">
+                <SplitPane
+                        left={
+                            <Contacts />
+                        }
+                        right={
+                            <Chat />
+                        }
+                />
+            </div>
+        )
+    }
+
+
+    ReactDOM.render(
+            <App />,
+        document.getElementById('root')
+    );
+</script>
+</body>
+</html>
