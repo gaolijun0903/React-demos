@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>列表&Keys</title>
+    <script src="https://unpkg.com/react@latest/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<script type="text/babel">
+   /*
+    元素的key在他的兄弟元素之间应该唯一
+    数组元素中使用的key在其兄弟之间应该是独一无二的。
+    然而，它们不需要是全局唯一的。当我们生成两个不同的数组时，我们可以使用相同的键
+  */
+    function Blog(props){
+        const posts= props.posts;
+        const sideBar = (
+            <ul>
+                {
+                    posts.map((post)=>{
+                        return (
+                            <li key={post.id}>{post.title}</li>
+                        )
+                    })
+                }
+            </ul>
+        );
+        const content = posts.map((post)=>{
+            return (
+                <div key={post.id} id={post.id}>
+                    <h3>{post.title}</h3>
+                    <p>{post.content}</p>
+                </div>
+            )
+        });
+        return (
+            <div>
+                {sideBar}
+                <hr/>
+                {content}
+            </div>
+        )
+    }
+    const posts = [
+        {id:1,title:'Hello world',content:'Welcome to learn React!'},
+        {id:2,title:'Installation',content:'You can install React from npm.'},
+        {id:3,title:'FurtherMore',content:'I am learning React.'}
+    ]
+    ReactDOM.render(
+        <Blog posts={posts} />,
+        document.getElementById('app')
+    )
+
+</script>
+</body>
+</html>
