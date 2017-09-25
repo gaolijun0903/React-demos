@@ -18,24 +18,54 @@
             </div>
         )
     }
-    function WelcomeDialog(props){
-        // 注释
+    function Dialog(props){
         return (
-            <FancyColor color='blue'>
+            <FancyColor color="blue">
                 <h1 className="Dialog-title">
-                    Welcome
+                    {props.title}
                 </h1>
                 <p className="Dialog-message">
-                    Thank you for visiting our spacecraft!
+                    {props.message}
                 </p>
+                {props.children}
             </FancyColor>
         )
     }
+    function WelcomeDialog(props){
+        return (
+            <Dialog title="Welcome" message="Thank you for visiting our spacecraft!" />
+        )
+    }
+    class SignUpDialog extends React.Component{
+        constructor(props){
+            super(props);
+            this.state = {login:''};
+            this.handleChange = this.handleChange.bind(this);
+            this.handleSignUp = this.handleSignUp.bind(this);
+        }
+        handleChange(event){
+            this.setState({login:event.target.value});
+        }
+        handleSignUp(e){
+            alert(`Welcome aboard,${this.state.login}!`);
+        }
+        render(){
+            return (
+                <Dialog title="Mars Exploration Program"
+                        message="How should we refer to you?">
+                    <input type="text" value={this.state.login} onChange={this.handleChange}/>
+                    <button onClick={this.handleSignUp}>Sign me up!</button>
+                </Dialog>
+            )
+        }
+    }
     ReactDOM.render(
-        <WelcomeDialog />,
+        <div>
+            <WelcomeDialog />
+            <SignUpDialog />
+        </div>,
         document.getElementById('app')
     );
-
 
 //另一个渲染
     function Contacts(){
@@ -44,7 +74,6 @@
     function Chat(){
         return <div>Chat</div>
     }
-
     function SplitPane(props){
         return (
             <div className="SplitPane">
